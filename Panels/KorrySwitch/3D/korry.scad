@@ -61,23 +61,4 @@ difference() {
 		}
 	}
 
-	// // chamfer - ugly but simple to render
-	// translate([-10, -3, -buttonHeight - 4]) {
-	// 	rotate([45, 0, 0]) cube([50, 4, 4]);
-	// }
-
-	// translate([-10, baseWidth - 0.2, -buttonHeight - 1.5]) {
-	// 	rotate([-45, 0, 0]) cube([50, 4, 4]);
-	// }
-
-	// translate([baseWidth, 0, 0]) rotate([0, 0, 90]) {
-	// 	translate([-10, -3, -buttonHeight - 4]) {
-	// 		rotate([45, 0, 0]) cube([50, 4, 4]);
-	// 	}
-
-	// 	translate([-10, baseWidth - 0.2, -buttonHeight - 1.5]) {
-	// 		rotate([-45, 0, 0]) cube([50, 4, 4]);
-	// 	}
-	// }
-
 }
