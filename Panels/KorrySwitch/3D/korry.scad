@@ -94,11 +94,18 @@ module korryButton(width = 25, height = 20, thickness = 1.5,) {
 	}
 }
 
-module buttonLid(width, thickness) {
+module buttonLid(width, thickness, text = false) {
 	// lid supports
 	lidWidth = width - thickness * 2 - buttonSpace / 2;
-	cube([lidWidth, lidWidth, lidThickness]);
+	difference() {
+		cube([lidWidth, lidWidth, lidThickness]);
 
+		if (text) {
+			translate([0.5, lidWidth/2 - 3.6/2, thickness]) linear_extrude(height = 0.6) {
+				text(text = "UNLOCK", font = font, size = 3.7, center=true);
+			}
+		}
+	}
 }
 
 
@@ -109,10 +116,14 @@ chamfer = 0.1;
 buttonSpace = .2;
 lidThickness = 2;
 
+font = "Liberation Sans";
+
 //korryBase(width, height, thickness, chamfer);
 
 //translate([thickness + buttonSpace / 2, thickness + buttonSpace / 2, -lidThickness -buttonSpace])
 //korryButton(width, height, thickness);
 
 //translate([thickness * 2 + buttonSpace / 2, thickness * 2 + buttonSpace / 2, - height - lidThickness + thickness - buttonSpace])
-buttonLid(width, thickness);
+buttonLid(width, thickness, text = "UNLOCK");
+
+
