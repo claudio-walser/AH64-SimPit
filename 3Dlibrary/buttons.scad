@@ -30,6 +30,7 @@ module boxFaceplate(width = 50, length = 200) {
 module boxInsert(width = 50, length = 200) {
     thickness = 2;
     overlap = 8;
+    lengthOverlap = 4;
     riftThickness = 3;
     riftHeight = 6;
 
@@ -38,11 +39,11 @@ module boxInsert(width = 50, length = 200) {
             cube(size = [width, length, thickness], center = false);
 
             // rifts
-            translate([overlap, overlap, thickness]) cube(size = [width - (overlap * 2), riftThickness, riftHeight], center = false);
-            translate([overlap, length - riftThickness - overlap, thickness]) cube(size = [width - (overlap * 2), riftThickness, riftHeight], center = false);
+            translate([lengthOverlap, overlap, thickness]) cube(size = [width - (lengthOverlap * 2), riftThickness, riftHeight], center = false);
+            translate([lengthOverlap, length - riftThickness - overlap, thickness]) cube(size = [width - (lengthOverlap * 2), riftThickness, riftHeight], center = false);
 
-            translate([overlap, overlap, thickness]) cube(size = [riftThickness, length - (overlap * 2), riftHeight], center = false);
-            translate([width - overlap - riftThickness, overlap, thickness]) cube(size = [riftThickness, length - (overlap * 2), riftHeight], center = false);
+            translate([lengthOverlap, overlap, thickness]) cube(size = [riftThickness, length - (overlap * 2), riftHeight], center = false);
+            translate([width - lengthOverlap - riftThickness, overlap, thickness]) cube(size = [riftThickness, length - (overlap * 2), riftHeight], center = false);
         }
 
         boxScrewHoles(width, length, overlap);
@@ -51,7 +52,7 @@ module boxInsert(width = 50, length = 200) {
 
 module ledHole(type="small") {
     if (type == "small") {
-        translate([0, 0, -1]) cylinder(d = 3.4, h = 20, $fn = 100);
+        translate([0, 0, -1]) cylinder(d = 3.3, h = 20, $fn = 100);
     } else {
         cylinder(d = 5.1, h = 10, $fn = 100);
     }
@@ -67,6 +68,8 @@ module buttonCoverHole(type = "default") {
         cylinder(d = 4.9, h = 10, $fn = 100);
     } else if (type == "switch-mini") {
         translate([0, 0, -7]) cylinder(d = 5.9, h = 10, $fn = 100);
+    } else if (type == "korry") {
+        translate([0, 0, -7]) cube([25.5, 25.5, 10]);
     } else {
         cylinder(d = 6.8, h = 10, $fn = 100);
     }
@@ -82,6 +85,8 @@ module buttonBaseHole(type = "default", socketHoles = false) {
         translate([0, 0, -7]) cylinder(d = 4.9, h = 10, $fn = 100);
     } else if (type == "switch-mini") {
         translate([0, 0, -7]) cylinder(d = 5.9, h = 10, $fn = 100);
+    } else if (type == "korry") {
+        translate([0, 0, -7]) cube([25.5, 25.5, 10]);
     } else {
         translate([0, 0, -7]) cylinder(d = 6.8, h = 10, $fn = 100);
     }

@@ -9,13 +9,29 @@ module korryBase(width = 25, height = 20, thickness = 1.5, chamfer = 0.1) {
 		union() {
 			cube([baseWidth, baseWidth, 2]);
 			translate([baseWidth / 2, baseWidth / 2, 0]) buttonBasePocket(type = "button-adafruit-1009");
+
+			// screw holes amplification for base fixation
+			cube([4, 4, 4]);
+			translate([baseWidth - 4, baseWidth - 4, 0])
+			cube([4, 4, 4]);
+
 		}
 
 		translate([baseWidth / 2, baseWidth / 2]) buttonBaseHole(type = "button-adafruit-1009", socketHoles = true);
 
 		translate([5, baseWidth / 2, 0]) ledHole(type = "small");
 		translate([baseWidth - 5, baseWidth / 2, 0]) ledHole(type = "small");
+
+		// screw holes for base fixation
+		translate([2, 2, -4])
+		cylinder(d = 1.8, h = 10, $fn = 144);
+
+		translate([baseWidth - 2, baseWidth - 2, -4])
+		cylinder(d = 1.8, h = 10, $fn = 144);
 	}
+
+
+
 
 	// button base walls
 	translate([0, 0, -height]) {
@@ -32,39 +48,55 @@ module korryBase(width = 25, height = 20, thickness = 1.5, chamfer = 0.1) {
 			translate([0, 0, -height]) {
 
 				translate([-thickness + chamfer / 2, -thickness, chamfer / 2])
-				minkowski() {
+				//minkowski() {
 					cube([baseWidth - chamfer + 2 * thickness, thickness * 2 - chamfer, thickness - chamfer]);
-					sphere(d=chamfer, $fn=144);
-				}
+					//sphere(d=chamfer, $fn=144);
+				//}
 
 				translate([-thickness, -thickness + chamfer / 2, chamfer / 2])
-				minkowski() {
+				//minkowski() {
 					cube([thickness * 2 - chamfer, baseWidth - chamfer + 2 * thickness, thickness - chamfer]);
-					sphere(d=chamfer, $fn=144);
-				}
+					//sphere(d=chamfer, $fn=144);
+				//}
 
 
 				translate([-thickness + chamfer / 2, baseWidth - thickness + chamfer / 2, chamfer / 2])
-				minkowski() {
+				//minkowski() {
 					cube([baseWidth - chamfer + 2 * thickness, thickness * 2 - chamfer, thickness - chamfer]);
-					sphere(d=chamfer, $fn=144);
-				}
+					//sphere(d=chamfer, $fn=144);
+				//}
 
 				translate([baseWidth - thickness + chamfer / 2, -thickness + chamfer / 2,  chamfer / 2])
-				minkowski() {
+				//minkowski() {
 					cube([thickness * 2 - chamfer, baseWidth - chamfer + 2 * thickness, thickness - chamfer]);
 					// cube([baseWidth - chamfer + 2 * thickness, thickness * 2 - chamfer, thickness - chamfer]);
-					sphere(d=chamfer, $fn=144);
-				}
+					//sphere(d=chamfer, $fn=144);
+				//}
+			}
+		}
+
+		// chamfer
+		translate([-10, -3, -height - 4]) {
+			rotate([45, 0, 0]) cube([50, 4, 4]);
+		}
+		translate([-10, baseWidth - 0.2, -height - 1.5]) {
+			rotate([-45, 0, 0]) cube([50, 4, 4]);
+		}
+		translate([baseWidth, 0, 0]) rotate([0, 0, 90]) {
+			translate([-10, -3, -height - 4]) {
+				rotate([45, 0, 0]) cube([50, 4, 4]);
+			}
+			translate([-10, baseWidth - 0.2, -height - 1.5]) {
+				rotate([-45, 0, 0]) cube([50, 4, 4]);
 			}
 		}
 	}
 }
 
-module korryButton(width = 25, height = 20, thickness = 1.5,) {
+module korryButton(width = 25, height = 20, thickness = 1.5, middle = false) {
 
 	buttonWidth = width - buttonSpace;
-	buttonHeight = height - thickness;
+	buttonHeight = height - thickness - 4;
 	baseWidth = width + (thickness * 2);
 
 	// Button base
@@ -94,36 +126,8 @@ module korryButton(width = 25, height = 20, thickness = 1.5,) {
 	}
 }
 
-module buttonLid(width, thickness, text = false) {
+module buttonLid(width, thickness) {
 	// lid supports
 	lidWidth = width - thickness * 2 - buttonSpace / 2;
-	difference() {
-		cube([lidWidth, lidWidth, lidThickness]);
-
-		if (text) {
-			translate([0.5, lidWidth/2 - 3.6/2, thickness]) linear_extrude(height = 0.6) {
-				text(text = "UNLOCK", font = font, size = 3.7, center=true);
-			}
-		}
-	}
+	cube([lidWidth, lidWidth, lidThickness]);
 }
-
-
-width = 25;
-height = 20;
-thickness = 1.5;
-chamfer = 0.1;
-buttonSpace = .2;
-lidThickness = 2;
-
-font = "Liberation Sans";
-
-//korryBase(width, height, thickness, chamfer);
-
-//translate([thickness + buttonSpace / 2, thickness + buttonSpace / 2, -lidThickness -buttonSpace])
-//korryButton(width, height, thickness);
-
-//translate([thickness * 2 + buttonSpace / 2, thickness * 2 + buttonSpace / 2, - height - lidThickness + thickness - buttonSpace])
-buttonLid(width, thickness, text = "UNLOCK");
-
-
