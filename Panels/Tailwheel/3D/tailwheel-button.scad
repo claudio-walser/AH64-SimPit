@@ -1,7 +1,7 @@
 include <../../KorrySwitch/3D/korry.scad>
 
-width = 25;
-height = 15;
+width = 22;
+height = 12;
 thickness = 1.5;
 chamfer = 0.1;
 buttonSpace = .2;
@@ -19,10 +19,10 @@ color("blue") korryButton(width, height, thickness);
 
 rotate([180,0,0])
 translate([thickness * 2, -lidWidth - thickness * 2, height-thickness])
-difference() {
+!difference() {
 	color("green")buttonLid(width, thickness);
 
-	translate([0.5, lidWidth/2 - 3.6/2, thickness]) linear_extrude(height = 0.6) {
-		text(text = "UNLOCK", font = font, size = 3.7);
+	translate([0.35, lidWidth/2 - 3.6/2, thickness]) linear_extrude(height = 0.6) {
+		text(text = "UNLOCK", font = font, size = 3.2);
 	}
 }

@@ -2,7 +2,7 @@ include <../../../3Dlibrary/buttons.scad>
 
 
 // faceplate
-!translate([60, 0, 0]) {
+translate([60, 0, 0]) {
 	difference() {
 		color("black") boxFaceplate(width = 55, length = 146);
 	    translate([12.25, 20, 0]) buttonCoverHole(type = "korry");
@@ -68,7 +68,7 @@ include <../../../3Dlibrary/buttons.scad>
 }
 
 // boxInsert
-difference() {
+!difference() {
 	boxInsert(width = 55, length = 146);
 	translate([12.25, 20, 0]) buttonBaseHole(type = "korry");
 

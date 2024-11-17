@@ -19,8 +19,8 @@ module korryBase(width = 25, height = 20, thickness = 1.5, chamfer = 0.1) {
 
 		translate([baseWidth / 2, baseWidth / 2]) buttonBaseHole(type = "button-adafruit-1009", socketHoles = true);
 
-		translate([5, baseWidth / 2, 0]) ledHole(type = "small");
-		translate([baseWidth - 5, baseWidth / 2, 0]) ledHole(type = "small");
+		translate([3.5, baseWidth / 2, 0]) ledHole(type = "small");
+		translate([baseWidth - 3.5, baseWidth / 2, 0]) ledHole(type = "small");
 
 		// screw holes for base fixation
 		translate([2, 2, -4])
