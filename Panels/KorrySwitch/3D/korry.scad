@@ -1,5 +1,17 @@
 include <../../../3Dlibrary/buttons.scad>
 
+module korryBaseFixation(width = 25, height = 20, thickness = 1.5, chamfer = 0.1) {
+	fixationWidth = width + (thickness * 4) + (buttonSpace * 2);
+
+	// button base walls
+	translate([0, 0, - height - (3.5 - thickness)]) {
+		cube([fixationWidth, thickness, height]);
+		cube([thickness, fixationWidth, height]);
+		translate([0, fixationWidth - thickness, 0]) cube([fixationWidth, thickness, height]);
+		translate([fixationWidth - thickness, 0, 0])cube([thickness, fixationWidth, height]);
+	}
+
+}
 
 module korryBase(width = 25, height = 20, thickness = 1.5, chamfer = 0.1) {
 

@@ -11,6 +11,8 @@ lidWidth = width - thickness * 2 - buttonSpace / 2;
 
 font = "Liberation Sans";
 
+translate([- thickness - buttonSpace, - thickness - buttonSpace, 6])
+korryBaseFixation(width, height, thickness, chamfer);
 korryBase(width, height, thickness, chamfer);
 
 translate([thickness + buttonSpace / 2, thickness + buttonSpace / 2, -lidThickness -buttonSpace-4])
@@ -19,7 +21,7 @@ color("blue") korryButton(width, height, thickness);
 
 rotate([180,0,0])
 translate([thickness * 2, -lidWidth - thickness * 2, height-thickness])
-!difference() {
+difference() {
 	color("green")buttonLid(width, thickness);
 
 	translate([0.35, lidWidth/2 - 3.6/2, thickness]) linear_extrude(height = 0.6) {
