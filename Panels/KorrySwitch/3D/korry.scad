@@ -3,12 +3,34 @@ include <../../../3Dlibrary/buttons.scad>
 module korryBaseFixation(width = 25, height = 20, thickness = 1.5, chamfer = 0.1) {
 	fixationWidth = width + (thickness * 4) + (buttonSpace * 2);
 
+	panelThickness = 2.9;
+	zOffset = 6.1 - panelThickness;
+
 	// button base walls
-	translate([0, 0, - height - (3.5 - thickness)]) {
-		cube([fixationWidth, thickness, height]);
-		cube([thickness, fixationWidth, height]);
-		translate([0, fixationWidth - thickness, 0]) cube([fixationWidth, thickness, height]);
-		translate([fixationWidth - thickness, 0, 0])cube([thickness, fixationWidth, height]);
+	translate([0, 0, - height - (zOffset-thickness)]) {
+		cube([fixationWidth, thickness, height + (zOffset-thickness)]);
+		cube([thickness, fixationWidth, height + (zOffset-thickness)]);
+		translate([0, fixationWidth - thickness, 0]) cube([fixationWidth, thickness, height + (zOffset-thickness)]);
+		translate([fixationWidth - thickness, 0, 0])cube([thickness, fixationWidth, height + (zOffset-thickness)]);
+
+		difference() {
+			translate([thickness, thickness, height + (zOffset-thickness-2)]) cube([4 + buttonSpace, 4 + buttonSpace, 2]);
+
+			// screw holes for base fixation
+			translate([4 - (buttonSpace*1.5), 4 - (buttonSpace*1.5), 5])
+			cylinder(d = 2.2, h = 10, $fn = 144);
+		}
+
+		translate([fixationWidth - 4 - buttonSpace - thickness - thickness,fixationWidth - 4 - buttonSpace - thickness - thickness, 0]) {
+			difference() {
+				translate([thickness, thickness, height + (zOffset-thickness-2)]) cube([4 + buttonSpace, 4 + buttonSpace, 2]);
+
+				// screw holes for base fixation
+				translate([4 - (buttonSpace*2.5), 4 - (buttonSpace*2.5), 5])
+				cylinder(d = 2.2, h = 10, $fn = 144);
+			}
+		}
+
 	}
 
 }
@@ -127,6 +149,11 @@ module korryButton(width = 25, height = 20, thickness = 1.5, middle = false) {
 		translate([0, buttonWidth - thickness, 0]) cube([buttonWidth, thickness, buttonHeight]);
 		translate([buttonWidth - thickness, 0, 0])cube([thickness, buttonWidth, buttonHeight + 2]);
 	}
+
+	if (middle) {
+		translate([(buttonWidth - thickness) / 2, 0, -(buttonHeight-2)]) cube([thickness, buttonWidth, buttonHeight]);
+	}
+
 
 	// lid supports
 	supportWidth = buttonWidth-2;

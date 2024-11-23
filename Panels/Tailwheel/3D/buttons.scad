@@ -13,6 +13,7 @@ font = "Liberation Sans";
 
 translate([- thickness - buttonSpace, - thickness - buttonSpace, 6])
 korryBaseFixation(width, height, thickness, chamfer);
+
 korryBase(width, height, thickness, chamfer);
 
 translate([thickness + buttonSpace / 2, thickness + buttonSpace / 2, -lidThickness -buttonSpace-4])
@@ -24,7 +25,7 @@ translate([thickness * 2, -lidWidth - thickness * 2, height-thickness])
 difference() {
 	color("green")buttonLid(width, thickness);
 
-	translate([0.35, lidWidth/2 - 3.6/2, thickness]) linear_extrude(height = 0.6) {
+	translate([0.35, lidWidth/2 - 3.6/2, 1.05]) linear_extrude(height = 1) {
 		text(text = "UNLOCK", font = font, size = 3.2);
 	}
 }
