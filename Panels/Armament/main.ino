@@ -11,30 +11,30 @@ bool goLedState = false;
 bool lastGoLedState = false;
 
 void setup() {
-  // arm yellow led
+  // arm-panel safe led
   pinMode(D2, OUTPUT);
-  // arm green led
+  // arm-panel arm led
   pinMode(D3, OUTPUT);
+
   // arm button
   pinMode(D4, INPUT_PULLUP);
 
-  // ground overwrite led
-  pinMode(D5, OUTPUT);
-  // ground overwrite button
+  // go button
   pinMode(D6, INPUT_PULLUP);
+
+  // led ground safe
+  pinMode(D5, OUTPUT);
 
 
   // initial ARM Led State is yellow
   digitalWrite(D2, HIGH);
   digitalWrite(D3, LOW);
 
-  // initial Ground Overwrite Led State is off
+  // initial Ground Override Led State is off
   digitalWrite(D5, LOW);
 
   Joystick.begin();
-  Serial.begin(9600);
 }
-
 void armButtonPress() {
   bool armButtonPressed = digitalRead(D4);
   if (armButtonPressed != armButtonState) {
@@ -44,6 +44,7 @@ void armButtonPress() {
     if (armButtonPressed) {
       armLedState = !armLedState;
     }
+
   }
 
   if (armLedState != lastArmLedState){
@@ -79,9 +80,8 @@ void goButtonPress() {
   }
 }
 
-
 void loop() {
   armButtonPress();
   goButtonPress();
-  delay(10);
+  delay(40);
 }

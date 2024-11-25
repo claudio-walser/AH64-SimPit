@@ -22,7 +22,7 @@ menu.LORAWAN_REGION=LoRaWan Region
 menu.LoRaWanDebugLevel=LoRaWan Debug Level
 menu.LORAWAN_DEVEUI=LoRaWan DevEUI
 menu.LORAWAN_PREAMBLE_LENGTH=LoRaWan Preamble Length
-nano_nora.name=AH-64 Armament Panel
+nano_nora.name=Apache AH-64D Tailwheel Panel
 nano_nora.vid.0=0x2341
 nano_nora.pid.0=0x0070
 nano_nora.upload_port.0.vid=0x2341
@@ -58,13 +58,13 @@ nano_nora.build.flash_mode=dio
 nano_nora.build.boot=qio
 nano_nora.build.boot_freq=80m
 nano_nora.build.partitions=app3M_fat9M_fact512k_16MB
-nano_nora.build.defines=-DBOARD_HAS_PIN_REMAP {build.disable_pin_remap} -DBOARD_HAS_PSRAM '-DUSB_MANUFACTURER="Arduino"' '-DUSB_PRODUCT="AH-64 Armament Panel"'
+nano_nora.build.defines=-DBOARD_HAS_PIN_REMAP {build.disable_pin_remap} -DBOARD_HAS_PSRAM '-DUSB_MANUFACTURER="Arduino"' '-DUSB_PRODUCT="Apache AH-64D Tailwheel Panel"'
 nano_nora.build.loop_core=-DARDUINO_RUNNING_CORE=1
 nano_nora.build.event_core=-DARDUINO_EVENT_RUNNING_CORE=1
 nano_nora.build.psram_type=opi
 nano_nora.build.memory_type={build.boot}_{build.psram_type}
 nano_nora.build.disable_pin_remap=
-nano_nora.debug_config.nano_nora.cortex-debug.custom.name=AH-64 Armament Panel
+nano_nora.debug_config.nano_nora.cortex-debug.custom.name=Arduino on Nano ESP32
 nano_nora.debug_config.nano_nora.cortex-debug.custom.overrideAttachCommands.0=set remote hardware-watchpoint-limit 2
 nano_nora.debug_config.nano_nora.cortex-debug.custom.overrideAttachCommands.1=monitor reset halt
 nano_nora.debug_config.nano_nora.cortex-debug.custom.overrideAttachCommands.2=monitor gdb_sync

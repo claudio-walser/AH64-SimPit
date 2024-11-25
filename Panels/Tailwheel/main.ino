@@ -86,5 +86,5 @@ void toggleSwitch() {
 void loop() {
   buttonPress();
   toggleSwitch();
-  delay(10);
+  delay(40);
 }
