@@ -16,11 +16,8 @@ void setup() {
   pinMode(D3, INPUT_PULLUP);
   pinMode(D4, INPUT_PULLUP);
 
-  //pinMode(D9, INPUT);
-  //pinMode(D12, INPUT);
   Joystick.begin();
   toggleSwitch();
-  Serial.begin(9600);
 }
 void buttonPress() {
   bool buttonPressed = digitalRead(D6);
@@ -34,9 +31,6 @@ void buttonPress() {
     }
 
   }
-
-  //Serial.println("buttonPressed");
-  //Serial.println(buttonPressed);
 
   if (blinkState != lastBlinkState){
     if (blinkState) {
@@ -55,13 +49,10 @@ void toggleSwitch() {
   char* toggleState;
   if (fixed && !off) {
     toggleState = "fixed";
-    //Joystick.setButton(1, true);
   } else if (fixed && off) {
     toggleState = "norm";
-    //Joystick.setButton(2, true);
   } else if (!fixed && off) {
     toggleState = "off";
-    //Joystick.setButton(3, true);
   }
 
   if (toggleState != lastToggleState){
@@ -86,5 +77,5 @@ void toggleSwitch() {
 void loop() {
   buttonPress();
   toggleSwitch();
-  delay(40);
+  delay(10);
 }
