@@ -1,4 +1,4 @@
-include <../../KorrySwitch/3D/korry.scad>
+include <../../../3Dlibrary/korry.scad>
 
 width = 22;
 height = 12;

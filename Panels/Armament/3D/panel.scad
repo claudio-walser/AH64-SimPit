@@ -5,16 +5,16 @@ include <../../../3Dlibrary/buttons.scad>
 translate([60, 0, 0]) {
 	difference() {
 		color("black") boxFaceplate(width = 55, length = 146);
-	    translate([7.25, 40, 0]) buttonCoverHole(type = "korry");
-		translate([7.5, 146-40-25, 0]) buttonCoverHole(type = "korry");
+	    translate([8.25, 40, 0]) buttonCoverHole(type = "korry");
+		translate([8.5, 146-40-25, 0]) buttonCoverHole(type = "korry");
 
 	}
-	translate([0, 0, -0.5])
+	translate([1, 0, -0.5])
 	color("white") {
 		linear_extrude(1) {
 
 			font = "Monospace";
-			translate([47, 57, 0]) {
+			translate([46, 57, 0]) {
 				// title tailwheel
 				rotate([180, 0, 90]) {
 					text(text = "ARMAMENT", font = font, size = 5);
@@ -64,7 +64,7 @@ translate([60, 0, 0]) {
 // boxInsert
 difference() {
 	boxInsert(width = 55, length = 146);
-	translate([7.25, 40, 0]) buttonBaseHole(type = "korry");
+	translate([8.25, 40, 0]) buttonBaseHole(type = "korry");
 
-	translate([7.25, 146-40-25, 0]) buttonBaseHole(type = "korry");
+	translate([8.25, 146-40-25, 0]) buttonBaseHole(type = "korry");
 }

@@ -7,7 +7,7 @@
 
 module boxScrewHoles(width = 50, length = 200, overlap = 6) {
     diameter = 3.2;
-    overlapTranslation = (overlap - diameter) / 2 + diameter / 2;
+    overlapTranslation = (6 - diameter) / 2 + diameter / 2;
     borderDistance = 10;
 
     translate([borderDistance, overlapTranslation, -10]) cylinder(d=diameter, h=20, $fn=100);
@@ -29,10 +29,10 @@ module boxFaceplate(width = 50, length = 200) {
 
 module boxInsert(width = 50, length = 200) {
     thickness = 2;
-    overlap = 8;
-    lengthOverlap = 4;
-    riftThickness = 3;
-    riftHeight = 6;
+    overlap = 0;
+    lengthOverlap = 0;
+    riftThickness = 6;
+    riftHeight = 3;
 
     difference() {
         union() {
