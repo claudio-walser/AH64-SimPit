@@ -1,81 +1,15 @@
-#include <Joystick_ESP32S2.h>
+#define DCSBIOS_DEFAULT_SERIAL
+#define DCSBIOS_DISABLE_SERVO
+#include <DcsBios.h>
 
-Joystick_ Joystick;
+DcsBios::LED pltCollectiveTailWheel(AH_64D_PLT_COLLECTIVE_TAIL_WHEEL_AM, D7);
+DcsBios::Switch3Pos pltNvsMode("PLT_NVS_MODE", D3, D4);
 
-bool blinkState = false;
-bool lastBlinkState = false;
-int lastButtonState = 0;
-
-char* lastToggleState = "none";
 
 void setup() {
-  pinMode(D7, OUTPUT);
-  digitalWrite(D7, LOW);
-
-
-  pinMode(D3, INPUT_PULLUP);
-  pinMode(D4, INPUT_PULLUP);
-
-  Joystick.begin();
-  toggleSwitch();
-}
-void buttonPress() {
-  bool buttonPressed = digitalRead(D6);
-
-  if (buttonPressed != lastButtonState) {
-    Joystick.setButton(0, buttonPressed);
-    lastButtonState = buttonPressed;
-
-    if (buttonPressed) {
-      blinkState = !blinkState;
-    }
-
-  }
-
-  if (blinkState != lastBlinkState){
-    if (blinkState) {
-      digitalWrite(D7, HIGH);
-    } else {
-      digitalWrite(D7, LOW);
-    }
-    lastBlinkState = blinkState;
-  }
-}
-
-void toggleSwitch() {
-  bool off = digitalRead(D3);
-  bool fixed = digitalRead(D4);
-
-  char* toggleState;
-  if (fixed && !off) {
-    toggleState = "fixed";
-  } else if (fixed && off) {
-    toggleState = "norm";
-  } else if (!fixed && off) {
-    toggleState = "off";
-  }
-
-  if (toggleState != lastToggleState){
-    if (toggleState == "fixed") {
-      Joystick.setButton(1, true);
-      Joystick.setButton(2, false);
-      Joystick.setButton(3, false);
-    } else if (toggleState == "norm") {
-      Joystick.setButton(1, false);
-      Joystick.setButton(2, true);
-      Joystick.setButton(3, false);
-    } else if (toggleState == "off") {
-      Joystick.setButton(1, false);
-      Joystick.setButton(2, false);
-      Joystick.setButton(3, true);
-    }
-    lastToggleState = toggleState;
-  }
-
+  DcsBios::setup();
 }
 
 void loop() {
-  buttonPress();
-  toggleSwitch();
-  delay(10);
+  DcsBios::loop();
 }
